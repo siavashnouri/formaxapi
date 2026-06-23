@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="modelrouter",
-    version="0.1.2",
+    name="fastschema",
+    version="0.1.3",
     author="EXO",
     description="Class-based routing with dynamic Pydantic model generation for FastAPI",
     long_description=long_description,
