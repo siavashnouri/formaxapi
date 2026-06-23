@@ -4,7 +4,7 @@ Class-based routing with dynamic Pydantic model generation for FastAPI.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Why routex?
 
@@ -826,6 +826,20 @@ class Chain:
 
 ---
 
+## Skills
+
+routex includes a `SKILL.md` file for AI code agents (Codex, MiMo, etc.). This file provides agents with specialized knowledge to work effectively with the routex package.
+
+**What it covers:**
+- Core concepts (FieldConfig, RouteField, RouteBase, @route, route_factory)
+- ORM integration patterns (SQLModel, Beanie)
+- Advanced features (SelfDerivedModel, Chain, ClassVar, validators)
+- Common CRUD and bulk operation patterns
+
+**Usage:** Agents automatically discover and load the skill when working with routex-related tasks. The skill file is located at the project root alongside `README.md`.
+
+---
+
 ## License
 
-MIT
+Apache License 2.0 — see [LICENSE](LICENSE) for details.

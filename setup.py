@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-with open("routex/README.md", "r", encoding="utf-8") as f:
+with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
     name="routex",
-    version="0.1.0",
+    version="0.1.1",
     author="EXO",
     description="Class-based routing with dynamic Pydantic model generation for FastAPI",
     long_description=long_description,
