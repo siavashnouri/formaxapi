@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="fastschema.png" alt="fastschema" width="400">
+</p>
+
 # fastschema
 
 Class-based routing with dynamic Pydantic model generation for FastAPI.
