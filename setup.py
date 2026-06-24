@@ -4,8 +4,8 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="fastschema",
-    version="0.1.7",
+    name="formaxapi",
+    version="0.1.8",
     author="EXO",
     description="Class-based routing with dynamic Pydantic model generation for FastAPI",
     long_description=long_description,
