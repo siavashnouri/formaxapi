@@ -1,10 +1,7 @@
 from __future__ import annotations
-import sys
-sys.path.insert(0, r"C:\Users\EXO\Documents\Delego")
-
 from fastapi import FastAPI, Request
 from fastapi.testclient import TestClient
-from framework import FieldConfig, RouteField, RouteBase, route, route_factory, Chain
+from formaxapi import FieldConfig, RouteField, RouteBase, route, route_factory, Chain
 from pydantic import BaseModel, field_validator
 from sqlmodel import Field, Session, SQLModel, create_engine
 from typing import Optional, ClassVar

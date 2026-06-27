@@ -87,7 +87,6 @@ class RouteMetaclass(_BaseMetaclass):
                 fields[attr_name] = field_info
 
         cls._fields = fields
-
         schema_types = set()
         for info in fields.values():
             schema_types.update(info.configs.keys())

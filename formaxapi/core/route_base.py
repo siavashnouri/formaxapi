@@ -23,7 +23,8 @@ class RouteBase(BaseModel,metaclass=RouteMetaclass):
 
     _fields: ClassVar[dict[str, FieldInfo]] = {}
     _schema_types: ClassVar[set[str]] = set()
-    _route_group: ClassVar[str] = ""
+    _tags: ClassVar[list[str]] = []
+    _prefix: ClassVar[str] = ""
 
     @classmethod
     def schema(cls, schema_type: str, *, name: str | None = None,
