@@ -72,13 +72,19 @@ app.include_router(route_factory(UserRoute, ProductRoute))
 ```
 
 ### SelfDerivedModel
-Derive a field's schema from the route's own fields (for bulk operations):
+Derive a field's schema from the route's own fields (for bulk operations). Supports `list` and `dict` containers:
 
 ```python
 from formaxapi import SelfDerivedModel
 
+# list container (default)
 items: list = RouteField(
     bulk_add=BulkAdd(default=SelfDerivedModel(schema="add", exclude_fields=["email"]))
+)
+
+# dict container
+mapping: dict = RouteField(
+    bulk_add=BulkAdd(default=SelfDerivedModel(schema="add", container="dict"))
 )
 ```
 

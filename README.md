@@ -588,7 +588,7 @@ class ProductRoute(RouteBase):
 
 ### SelfDerivedModel - Bulk Operations
 
-Derive a field's schema from the route's own fields:
+Derive a field's schema from the route's own fields. Supports `list` and `dict` containers:
 
 ```python
 from formaxapi import FieldConfig, RouteField, RouteBase, SelfDerivedModel
@@ -609,13 +609,22 @@ class UserRoute(RouteBase):
     name: str = RouteField(add=Add(), output=Output())
     email: str = RouteField(add=Add(), output=Output())
 
+    # list container (default)
     items: list = RouteField(
         bulk_add=BulkAdd(
             default=SelfDerivedModel(schema="add", exclude_fields=["email"])
         ),
     )
 
+    # dict container
+    mapping: dict = RouteField(
+        bulk_add=BulkAdd(
+            default=SelfDerivedModel(schema="add", container="dict")
+        ),
+    )
+
 # UserRoute.schema("bulk_add") => items: list[name: str]  (email excluded)
+# UserRoute.schema("bulk_add") => mapping: dict[str, {name: str, email: str}]
 ```
 
 ---
@@ -798,6 +807,7 @@ class SelfDerivedModel:
         format: str = "model",
         include_fields: list[str] | None = None,
         exclude_fields: list[str] | None = None,
+        container: str = "list",  # "list" or "dict"
     ): ...
 ```
 
