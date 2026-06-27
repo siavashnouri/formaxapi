@@ -175,8 +175,16 @@ class ModelFactory:
             include_fields=sdm.include_fields,
             exclude_fields=sdm.exclude_fields,
         )
-        field_type = list[derived]
-        default = [] if not sdm.is_optional else None
+        try:
+            derived.model_rebuild(force=True)
+        except Exception:
+            pass
+        if sdm.container == "dict":
+            field_type = derived
+            default = {} if not sdm.is_optional else None
+        else:
+            field_type = list[derived]
+            default = [] if not sdm.is_optional else None
         return field_type, default
 
     @staticmethod

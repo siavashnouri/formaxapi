@@ -43,7 +43,10 @@ def route_factory(*route_classes: type) -> APIRouter:
     router = APIRouter()
 
     for cls in route_classes:
-        default_tags = [getattr(cls, '_route_group', None) or cls.__name__]
+        cls_prefix = ""
+        if cls._prefix:
+            cls_prefix=cls._prefix if cls._prefix.startswith("/") else "/" + cls._prefix
+        default_tags = [getattr(cls, '_tags', None) or cls.__name__]
 
         for attr_name in dir(cls):
             attr = getattr(cls, attr_name, None)
@@ -55,10 +58,10 @@ def route_factory(*route_classes: type) -> APIRouter:
             if info is None:
                 continue
 
-            tags = info.tags if info.tags else default_tags
-
+            tags = info.tags + default_tags
+            path = cls_prefix + info.path if info.path.startswith("/") else cls_prefix + "/" + info.path
             router.add_api_route(
-                path=info.path,
+                path=path,
                 endpoint=attr,
                 methods=[info.method],
                 name=info.name,

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from fastapi import FastAPI, Request
-from framework import (
+from formaxapi import (
     FieldConfig, RouteField, RouteBase, SelfDerivedModel,
     route, route_factory,Chain
 )
@@ -90,6 +90,8 @@ class Data(BaseModel):
         return v+" nouri"
 
 class ProductRoute(RouteBase,Document):
+    _prefix="test"
+    _tags=["product"]
     title: str = RouteField(add=Add(apply_func=Chain(apply_f2, apply_f), before=False), edit=Edit(), output=Output(), min_length=3, max_length= 5)
     price: float = RouteField(add=Add(), edit=Edit(), gt=10, lt=50)
 
@@ -97,7 +99,7 @@ class ProductRoute(RouteBase,Document):
     doc_id: ClassVar[str | None] = RouteField(default = None, get=Get(), add=Add())
     data: Data = RouteField(add=Add(), edit=Edit(), output=Output())
     @classmethod
-    @route(path="/products/get", method="post")
+    @route(path="/products/get", method="post", tags=["producst"])
     async def get_products(cls, request: Request, data: ProductRoute.schema("get")):
         document = await cls.get(data.doc_id,projection_model=ProductRoute.schema("output"))
 
